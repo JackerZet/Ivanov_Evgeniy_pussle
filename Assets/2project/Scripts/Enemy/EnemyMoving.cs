@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Puzzle.Enemy
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class EnemyMoving : MonoBehaviour
     {
         //Enemy can randomly jump
