@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Puzzle.Enemy
@@ -7,19 +8,23 @@ namespace Puzzle.Enemy
         [SerializeField] private GameObject bullet;
         [SerializeField] private Transform spawnPoint;
         [SerializeField] private float shotFrequency = 3f;
-
-        private float nextShotTime;
-        void Update()
+        
+        private void OnEnable()
         {
-            Shoot();
-        }
-        private void Shoot()
+            StartCoroutine(Shoot());
+        }      
+        private IEnumerator Shoot()
         {
-            if (Time.time > nextShotTime)
+            while (enabled)
             {
-                Instantiate(bullet, spawnPoint.position, spawnPoint.rotation);
-                nextShotTime = Time.time + shotFrequency;
+                Instantiate(bullet, spawnPoint.position, spawnPoint.rotation);                
+                yield return new WaitForSeconds(shotFrequency);
             }
+            yield return null;
+        }
+        private void OnDisable()
+        {
+            StopCoroutine(Shoot());
         }
     }
 }

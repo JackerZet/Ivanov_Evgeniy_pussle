@@ -3,7 +3,8 @@ using UnityEngine;
 namespace Puzzle.Enemy 
 {
     public class Shoot : MonoBehaviour
-    {       
+    {
+        [SerializeField] private bool homing = true;
         [SerializeField] private float timeFinding = 3f;
         [SerializeField] private float speed = 8f;
         [SerializeField] private float angularSpeed = 0.8f;
@@ -17,6 +18,10 @@ namespace Puzzle.Enemy
             player = FindObjectOfType<Puzzle.Player.PlayerMovement>().transform;
             timeFind = Time.time + timeFinding;
             timeDestroy = Time.time + 7f;
+            if (!homing)
+            {
+                timeFind = 0;
+            }
         }
         void Update()
         {         
