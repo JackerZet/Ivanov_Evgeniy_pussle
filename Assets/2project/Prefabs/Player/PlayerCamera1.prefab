@@ -32,6 +32,21 @@ PrefabInstance:
       propertyPath: near clip plane
       value: 0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 5129283417134459742, guid: 990d841cb7d911640a0c5e76b6da29c5,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.9528302
+      objectReference: {fileID: 0}
+    - target: {fileID: 5129283417134459742, guid: 990d841cb7d911640a0c5e76b6da29c5,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.7722821
+      objectReference: {fileID: 0}
+    - target: {fileID: 5129283417134459742, guid: 990d841cb7d911640a0c5e76b6da29c5,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.63372195
+      objectReference: {fileID: 0}
     - target: {fileID: 5170676658691873220, guid: 990d841cb7d911640a0c5e76b6da29c5,
         type: 3}
       propertyPath: m_Name

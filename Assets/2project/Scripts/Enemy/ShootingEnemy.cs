@@ -7,8 +7,7 @@ namespace Puzzle.Enemy
     {
         [SerializeField] private GameObject bullet;
         [SerializeField] private Transform spawnPoint;
-        [SerializeField] private float shotFrequency = 3f;
-        
+        [SerializeField] private float shotFrequency = 3f;       
         private void OnEnable()
         {
             StartCoroutine(Shoot());
@@ -18,6 +17,7 @@ namespace Puzzle.Enemy
             while (enabled)
             {
                 Instantiate(bullet, spawnPoint.position, spawnPoint.rotation);                
+                
                 yield return new WaitForSeconds(shotFrequency);
             }
             yield return null;

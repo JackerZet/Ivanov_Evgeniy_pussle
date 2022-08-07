@@ -6,18 +6,24 @@ namespace Puzzle.Enemy
     {
         [SerializeField] private bool homing = true;
         [SerializeField] private float timeFinding = 3f;
+        [SerializeField] private float timeDestroy = 7f;
         [SerializeField] private float speed = 8f;
         [SerializeField] private float angularSpeed = 0.8f;
         [SerializeField] private float damage = 5f;
 
+        private const string targetTag = "Player";
+
         private Transform player;
         private float timeFind;
-        private float timeDestroy;       
-        private void Start()
+        private float timeDestr;
+        private void Awake()
         {
             player = FindObjectOfType<Puzzle.Player.PlayerMovement>().transform;
+        }
+        private void Start()
+        {           
             timeFind = Time.time + timeFinding;
-            timeDestroy = Time.time + 7f;
+            timeDestr = Time.time + timeDestroy;
             if (!homing)
             {
                 timeFind = 0;
@@ -30,31 +36,24 @@ namespace Puzzle.Enemy
             {               
                 LookAtPlayer();               
             }
-            if (Time.time > timeDestroy)
+            if (Time.time > timeDestr)
             {
                 Destroy(gameObject);
-            }
+            }           
         }
         private void Shot()
         {
-            transform.position += transform.forward * speed * Time.deltaTime;
+            transform.position += transform.forward * speed * Time.deltaTime;           
         }
         private void OnCollisionEnter(Collision collision)
-        {
-            Hit(collision.gameObject);
-        }
-        private void OnTriggerEnter(Collider other)
-        {
-            Hit(other.gameObject);
-        }
+        {            
+            Hit(collision.gameObject);                       
+        }        
         private void Hit(GameObject collisionGO)
         {
-            if (collisionGO.TryGetComponent(out Puzzle.HealthManager health))
-            {
-                if (collisionGO.GetComponent<Puzzle.Player.PlayerMovement>())
-                {
-                    health.Hit(damage);
-                }                
+            if (collisionGO.CompareTag(targetTag) && collisionGO.TryGetComponent(out Puzzle.HealthManager health))
+            {                               
+                health.Hit(damage);                               
             }
             Destroy(gameObject);
         }

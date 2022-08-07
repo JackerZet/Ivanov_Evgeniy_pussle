@@ -6,6 +6,8 @@ namespace Puzzle.Player
     {
         [SerializeField] private float speed = 12f;
         [SerializeField] private float damage = 5f;
+        
+        private const string targetTag = "Enemy";
         void Update()
         {
             Shot();
@@ -24,12 +26,9 @@ namespace Puzzle.Player
         }
         private void Hit(GameObject collisionGO)
         {
-            if (collisionGO.TryGetComponent(out Puzzle.HealthManager health))
-            {
-                if (collisionGO.GetComponent<Puzzle.Player.PlayerMovement>() == false)
-                {
-                    health.Hit(damage);
-                }
+            if (collisionGO.CompareTag(targetTag) && collisionGO.TryGetComponent(out Puzzle.HealthManager health))
+            {               
+                health.Hit(damage);               
             }
             Destroy(gameObject);
         }
