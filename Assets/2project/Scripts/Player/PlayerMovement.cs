@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Puzzle.Player
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] private float speed = 6f;
@@ -10,22 +11,25 @@ namespace Puzzle.Player
         [SerializeField] private float jumpForce = 6f;
         [SerializeField] private GameObject player;
         [SerializeField] private GameObject playerCamera;
+        [SerializeField] private GameObject isGroundPoint;
 
         private const string Horizontal = "Horizontal";
         private const string Vertical = "Vertical";
         private const string Running = "Running";
         private const string MouseX = "Mouse X";
         private const string MouseY = "Mouse Y";
+        private const string Ground = "Ground";
 
         private Vector3 direction;
         private float rotationDirX;
         private float rotationDirY;
         private bool isRunning;
         private Rigidbody rb;
-        void Start()
+        private bool isGround;
+        private void Awake() 
         {
             Cursor.lockState = CursorLockMode.Locked;
-            rb = GetComponent<Rigidbody>();
+            rb = GetComponent<Rigidbody>();            
         }
         void Update()
         {
@@ -36,9 +40,9 @@ namespace Puzzle.Player
         private void Jump()
         {
             //Ball can jump
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && isGround)
             {
-                //Ball can jump higher when shift is pressed
+                //Ball can jump higher when shift is pressed               
                 rb.AddForce(player.transform.up * (isRunning ? (jumpForce * 1.5f) : jumpForce), ForceMode.Impulse);
             }
         }
@@ -59,6 +63,15 @@ namespace Puzzle.Player
 
             playerCamera.transform.rotation = Quaternion.Euler(-rotationDirY, rotationDirX, 0f);
             player.transform.rotation = Quaternion.Euler(0f, rotationDirX, 0f);
+        }        
+        private void OnCollisionStay(Collision collision)
+        {
+            if (collision.gameObject.CompareTag(Ground))
+                isGround = true;        
+        }
+        private void OnCollisionExit(Collision other)
+        {                        
+            isGround = false;                  
         }
         private void OnDestroy()
         {

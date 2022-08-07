@@ -10,7 +10,7 @@ namespace Puzzle.Enemy
         [SerializeField] private float jumpForce = 8f;
 
         private Rigidbody rb;
-        void Start()
+        private void Awake()
         {
             rb = GetComponent<Rigidbody>();
         }

@@ -9,12 +9,14 @@ namespace Puzzle.Enemy
     {
         [SerializeField] private Transform[] waypoints;
         [SerializeField] private float damage = 0.2f;
+
+        private const string targetTag = "Player";
         
         private NavMeshAgent agent;
         private GameObject player;
         private bool visibilityArea = false;                
-        private int index;
-        void Start()
+        private int index;        
+        private void Awake()
         {
             agent = GetComponent<NavMeshAgent>();
             player = FindObjectOfType<Puzzle.Player.PlayerMovement>().gameObject;
@@ -68,12 +70,9 @@ namespace Puzzle.Enemy
         }
         private void Hit(GameObject collisionGO)
         {
-            if (collisionGO.TryGetComponent(out Puzzle.HealthManager health))
-            {
-                if (collisionGO.GetComponent<Puzzle.Player.PlayerMovement>())
-                {
-                    health.Hit(damage);
-                }
+            if (collisionGO.CompareTag(targetTag) && collisionGO.TryGetComponent(out Puzzle.HealthManager health))
+            {                
+                health.Hit(damage);
             }
         }
     }

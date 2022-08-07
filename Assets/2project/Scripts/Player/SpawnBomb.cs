@@ -5,12 +5,13 @@ namespace Puzzle.Player
     public class SpawnBomb : MonoBehaviour
     {
         [SerializeField] private GameObject bomb;
-        [SerializeField] private Transform spawnBombPoint;        
+        [SerializeField] private Transform spawnBombPoint;
+        
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetMouseButtonDown(1))
             {                              
-                Instantiate(bomb, spawnBombPoint.position, Quaternion.identity);                               
+                Instantiate(bomb, spawnBombPoint.position, spawnBombPoint.rotation);
             }           
         }
     }

@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 431008}
   - component: {fileID: 3331670}
   - component: {fileID: 2314182}
-  - component: {fileID: 2906687861150061917}
-  - component: {fileID: 699985632674766423}
   m_Layer: 0
   m_Name: key
   m_TagString: Untagged
@@ -28,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105912}
   m_LocalRotation: {x: 0.14224425, y: 0.099600494, z: 0.8067073, w: 0.56486255}
-  m_LocalPosition: {x: 3, y: 0, z: -0.9}
+  m_LocalPosition: {x: 2.78, y: 0.84, z: -1.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 462124}
@@ -83,32 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &2906687861150061917
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 105912}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 3
-  m_Center: {x: 0.315, y: 3.14, z: 0}
---- !u!114 &699985632674766423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 105912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4f4f8562d4c9674581b62d9b66f67c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rbDoor: {fileID: 0}
 --- !u!1 &170560
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,9 +90,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 462124}
+  - component: {fileID: 6424778510638264614}
+  - component: {fileID: 8227967761427002781}
   m_Layer: 0
   m_Name: Key
-  m_TagString: Untagged
+  m_TagString: PickUps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,3 +114,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &6424778510638264614
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170560}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8227967761427002781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f4f8562d4c9674581b62d9b66f67c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rbDoor: {fileID: 0}
