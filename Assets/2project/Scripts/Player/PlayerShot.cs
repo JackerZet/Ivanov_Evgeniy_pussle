@@ -20,10 +20,6 @@ namespace Puzzle.Player
         {
             Hit(collision.gameObject);
         }
-        private void OnTriggerEnter(Collider other)
-        {
-            Hit(other.gameObject);
-        }
         private void Hit(GameObject collisionGO)
         {
             if (collisionGO.CompareTag(targetTag) && collisionGO.TryGetComponent(out Puzzle.HealthManager health))

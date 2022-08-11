@@ -25,10 +25,7 @@ namespace Puzzle.Enemy
         private void OnEnable()
         {
             StartCoroutine(Follow());
-        }
-        private void Update()
-        {
-            Patrol();
+            StartCoroutine(Patrol());
         }
         private void OnCollisionStay(Collision collision)
         {
@@ -50,23 +47,34 @@ namespace Puzzle.Enemy
             {
                 if (visibilityArea)
                 {
-                    agent.SetDestination(player.transform.position);                    
+                    agent.SetDestination(player.transform.position);
                 }
-                yield return new WaitForFixedUpdate();
+                else
+                {                   
+                    agent.SetDestination(waypoints[index].position);
+                }
+                yield return new WaitForEndOfFrame();
             }
             yield return null;
         }
-        private void Patrol()
-        {           
-            if (agent.remainingDistance <= agent.stoppingDistance)
+        private IEnumerator Patrol()
+        {
+            while (enabled)
             {
-                index = (index + 1) % waypoints.Length;
-                agent.SetDestination(waypoints[index].position);
-            }                        
+                if (!visibilityArea && agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    index = (index + 1) % waypoints.Length;
+                    agent.SetDestination(waypoints[index].position);
+                }
+                yield return new WaitForEndOfFrame();
+            }
+            yield return null;
         }
+
         private void OnDisable()
         {
             StopCoroutine(Follow());
+            StopCoroutine(Patrol());
         }
         private void Hit(GameObject collisionGO)
         {
