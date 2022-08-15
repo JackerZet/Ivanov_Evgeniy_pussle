@@ -4,9 +4,8 @@ namespace Puzzle
 {
     public class HealthManager : MonoBehaviour
     {
-        [SerializeField] private float maxHealth = 100f;
-        [SerializeField] private float curHealth = 100f;
-        private GameObject player;
+        public float maxHealth = 100f;
+        public float curHealth = 100f;        
         private void Awake()
         {
             curHealth = maxHealth;
@@ -16,7 +15,8 @@ namespace Puzzle
             curHealth -= damage;           
             if (curHealth <= 0)
             {                                                                              
-                Destroy(gameObject);                                            
+                Destroy(gameObject);
+                curHealth = 0.1f;
             } 
         }
         public void Heal(float cure)

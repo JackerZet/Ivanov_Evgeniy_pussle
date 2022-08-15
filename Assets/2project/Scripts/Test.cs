@@ -10,6 +10,6 @@ public class Test : MonoBehaviour
         while (true)
         {
             x++;
-        }
+        }       
     }
 }

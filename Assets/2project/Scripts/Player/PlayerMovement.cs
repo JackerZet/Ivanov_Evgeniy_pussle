@@ -23,6 +23,7 @@ namespace Puzzle.Player
         private void Awake() 
         {
             Cursor.lockState = CursorLockMode.Locked;
+            Time.timeScale = 1;
             rb = GetComponent<Rigidbody>();            
         }
         void Update()
@@ -36,13 +37,13 @@ namespace Puzzle.Player
             if (Input.GetKeyDown(KeyCode.Space) && isGround)
             {
                 //Ball can jump higher when shift is pressed               
-                rb.AddForce(transform.up * (isRunning ? (jumpForce * 1.5f) : jumpForce), ForceMode.Impulse);
+                rb.AddForce(Vector3.up * (isRunning ? (jumpForce * 1.5f) : jumpForce), ForceMode.Impulse);
             }
         }
         private void Move()
         {      
             direction.x = Input.GetAxis(Horizontal);
-            direction.z = Input.GetAxis(Vertical);
+            direction.z = Input.GetAxis(Vertical); 
             direction = transform.TransformDirection(direction); //I have been looking for this method for a very long time
             isRunning = Input.GetButton(Running);
             

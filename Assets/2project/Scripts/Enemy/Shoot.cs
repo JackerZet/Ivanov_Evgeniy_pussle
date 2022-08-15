@@ -13,30 +13,30 @@ namespace Puzzle.Enemy
 
         private const string targetTag = "Player";
 
-        private Transform player;
-        private float timeFind;
-        private float timeDestr;
+        private Transform _player;
+        private float _timeFind;
+        private float _timeDestr;
         private void Awake()
         {
-            player = FindObjectOfType<Puzzle.Player.PlayerMovement>().transform;
+            _player = FindObjectOfType<Puzzle.Player.PlayerMovement>().transform;
         }
         private void Start()
         {           
-            timeFind = Time.time + timeFinding;
-            timeDestr = Time.time + timeDestroy;
+            _timeFind = Time.time + timeFinding;
+            _timeDestr = Time.time + timeDestroy;
             if (!homing)
             {
-                timeFind = 0;
+                _timeFind = 0;
             }
         }
         void Update()
         {         
             Shot();
-            if (Time.time < timeFind)
+            if (Time.time < _timeFind)
             {               
                 LookAtPlayer();               
             }
-            if (Time.time > timeDestr)
+            if (Time.time > _timeDestr)
             {
                 Destroy(gameObject);
             }           
@@ -59,7 +59,7 @@ namespace Puzzle.Enemy
         }
         private void LookAtPlayer()
         {
-            var direction = player.transform.position - transform.position;
+            var direction = _player.transform.position - transform.position;
             var rotation = Vector3.RotateTowards(transform.forward, direction, angularSpeed * Time.deltaTime, 0f);
             transform.rotation = Quaternion.LookRotation(rotation);
         }
