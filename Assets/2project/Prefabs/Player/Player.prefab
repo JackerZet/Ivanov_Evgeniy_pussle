@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 3405061287686982762}
   m_Father: {fileID: 2650141635435277248}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3868197674460531188
 MeshFilter:
@@ -158,6 +158,8 @@ GameObject:
   - component: {fileID: 1396372475202888114}
   - component: {fileID: 7952783435645790222}
   - component: {fileID: 4483365389862741975}
+  - component: {fileID: 5233152845693623221}
+  - component: {fileID: 5496159380545519319}
   m_Layer: 0
   m_Name: CharacterPoint
   m_TagString: Untagged
@@ -176,6 +178,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2346667165345795303}
   - {fileID: 6750949491020732188}
   m_Father: {fileID: 2673157036846114817}
   m_RootOrder: 0
@@ -207,7 +210,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &820249975561386509
 MonoBehaviour:
@@ -251,7 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBullet: {fileID: 7334605975842341116, guid: 14959541042fabd41a47dcf4d5445921,
     type: 3}
-  spawnBulletPoint: {fileID: 0}
+  spawnBulletPoint: {fileID: 2346667165345795303}
 --- !u!114 &4483365389862741975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,3 +270,62 @@ MonoBehaviour:
   speed: 5
   runSpeed: 9
   jumpForce: 5
+--- !u!114 &5233152845693623221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3908189652586944656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15966092e18691b44b4dd2650f5d3384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mine: {fileID: 3345370160348008560, guid: 0fe8d221cb85e78419500799008fdc44, type: 3}
+  contObj: {fileID: 7952783435645790222}
+  spawnMineDisMax: 12
+--- !u!114 &5496159380545519319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3908189652586944656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350953bbaabb4fe469a04eb74958f235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  health: {fileID: 820249975561386509}
+--- !u!1 &6968325280130018581
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2346667165345795303}
+  m_Layer: 0
+  m_Name: SpawnBullletPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2346667165345795303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6968325280130018581}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.3}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_Children: []
+  m_Father: {fileID: 2650141635435277248}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

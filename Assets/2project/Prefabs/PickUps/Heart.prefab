@@ -138,8 +138,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3660999961111757721}
-  - component: {fileID: 1954820164391660686}
   - component: {fileID: 3432263673210896654}
+  - component: {fileID: 786502202994738665}
   m_Layer: 0
   m_Name: Heart
   m_TagString: PickUps
@@ -162,19 +162,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1954820164391660686
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7080791103688891995}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.8
-  m_Center: {x: 0, y: 0, z: 0.12}
 --- !u!114 &3432263673210896654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,3 +175,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healingDamage: 50
+--- !u!135 &786502202994738665
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7080791103688891995}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.8
+  m_Center: {x: 0, y: 0, z: 0}
