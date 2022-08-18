@@ -16,8 +16,7 @@ namespace Puzzle.Enemy
         {
             while (enabled)
             {
-                Instantiate(bullet, spawnPoint.position, spawnPoint.rotation);                
-                
+                Instantiate(bullet, spawnPoint.position, spawnPoint.rotation);
                 yield return new WaitForSeconds(shotFrequency);
             }
             yield return null;

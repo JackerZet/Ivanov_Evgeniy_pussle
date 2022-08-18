@@ -7,16 +7,17 @@ namespace Puzzle.PickUp
         [SerializeField] private float damage = 25f;
         [SerializeField] private float timeNoExplose = 4f;
         [SerializeField] private float repulsion = 10f;
+        [SerializeField] private GameObject explosionPoint;
 
         private bool Boom = false;
-        private float timeNoExploseScale;
+        private float _timeNoExploseScale;
         private void Start()
         {
-            timeNoExploseScale = Time.time + timeNoExplose;
+            _timeNoExploseScale = Time.time + timeNoExplose;
         }
         private void OnCollisionEnter(Collision collision)
         {
-            if (Time.time > timeNoExploseScale)
+            if (Time.time > _timeNoExploseScale)
             {               
                 Boom = true;
             }
@@ -26,9 +27,10 @@ namespace Puzzle.PickUp
             if (Boom && !other.isTrigger)
             {
                 Explose(other.gameObject);
+                Instantiate(explosionPoint, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
-        }
+        }       
         private void Explose(GameObject collisionGO)
         {           
             if (collisionGO.TryGetComponent(out Rigidbody rb))

@@ -20,6 +20,10 @@ namespace Puzzle.Enemy
             {
                 rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
             }
+            if (Random.Range(0, probabilityToJumpInFrame) == 0)
+            {
+                rb.AddForce(transform.right * jumpForce, ForceMode.Impulse);
+            }
         }
     }
 }
