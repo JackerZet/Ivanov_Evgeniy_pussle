@@ -17,8 +17,8 @@ namespace Puzzle.Enemy
         private float _timeFind;
         private float _timeDestr;
         private void Awake()
-        {
-            _player = FindObjectOfType<Puzzle.Player.PlayerMovement>().transform;
+        {           
+            _player = FindObjectOfType<Player.PlayerMovement>().transform;           
         }
         private void Start()
         {           
@@ -32,7 +32,7 @@ namespace Puzzle.Enemy
         void Update()
         {         
             Shot();
-            if (Time.time < _timeFind)
+            if (Time.time < _timeFind && _player != null)
             {               
                 LookAtPlayer();               
             }

@@ -7,9 +7,10 @@ namespace Puzzle.UI
 {
     public class MainSettings : MonoBehaviour
     {
-        [SerializeField] private Slider slider;
+        [SerializeField] private Slider slider;       
         private void Awake()
         {
+            slider.value = AudioListener.volume;            
             slider.onValueChanged.AddListener(value => AudioListener.volume = value);
         }       
     }

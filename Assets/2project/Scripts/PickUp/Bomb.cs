@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Puzzle.PickUp
@@ -9,25 +10,42 @@ namespace Puzzle.PickUp
         [SerializeField] private float timeNoExplose = 4f;
         [SerializeField] private float repulsion = 10f;
         [SerializeField] private float throwForce = 6f;
+        [SerializeField] private GameObject explosionPoint;
         
-        private float timeNoExploseScale;
-        private Rigidbody rb;
+        private float _timeNoExploseScale;        
+        private Rigidbody _rb;
+        private bool _boom = true;
+
         private void Awake()
         {
-            rb = GetComponent<Rigidbody>();                      
+            _rb = GetComponent<Rigidbody>();
         }
         private void Start()
         {
-            timeNoExploseScale = Time.time + timeNoExplose;
-            rb.AddForce(transform.forward * throwForce, ForceMode.Impulse);
-        }
+            _timeNoExploseScale = Time.time + timeNoExplose;
+            StartCoroutine(LonelyExplose());
+            _rb.AddForce(transform.forward * throwForce, ForceMode.Impulse);
+        }       
         private void OnTriggerStay(Collider other)
         {
-            if (Time.time > timeNoExploseScale && !other.isTrigger)
+            if (Time.time > _timeNoExploseScale && !other.isTrigger)
             {                               
                 Explose(other.gameObject);
-                Destroy(gameObject);                              
+                _boom = false;
+                Instantiate(explosionPoint, transform.position, Quaternion.identity);
+                Destroy(gameObject);
             } 
+        }
+        private IEnumerator LonelyExplose()
+        {
+            while (Time.time > _timeNoExploseScale && _boom)
+            {                
+                Instantiate(explosionPoint, transform.position, Quaternion.identity);
+                Destroy(gameObject);                    
+                StopCoroutine(LonelyExplose());                
+                yield return new WaitForEndOfFrame();
+            }
+            yield return null;
         }
         private void Explose(GameObject collisionGO)
         {           
@@ -37,8 +55,9 @@ namespace Puzzle.PickUp
                 if (collisionGO.TryGetComponent(out HealthManager health))
                 {
                     health.Hit(damage);                   
-                }                
+                }          
             }
         }
+        
     }
 }

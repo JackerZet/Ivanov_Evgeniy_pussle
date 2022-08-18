@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Puzzle.Player
@@ -6,27 +7,37 @@ namespace Puzzle.Player
     {
         [SerializeField] private GameObject playerBullet;
         [SerializeField] private Transform spawnBulletPoint;
-        private bool shooting = true;
+        [SerializeField] private float shotFrequency = 0.3f;
+        private bool _shooting = true;
 
+        private void OnEnable()
+        {
+            StartCoroutine(Shooting());
+        }
         public override void ShootingDisable()
         {
-            shooting = false;
+            _shooting = false;
         }
 
         public override void ShootingEnable()
         {
-            shooting = true;
-        }
-
-        void Update()
+            _shooting = true;
+        }     
+        private IEnumerator Shooting()
         {
-            if (Input.GetMouseButtonDown(0))
+            while (enabled)
             {
-                if (shooting)
+                if (Input.GetMouseButton(0) && _shooting)
                 {
                     Instantiate(playerBullet, spawnBulletPoint.position, spawnBulletPoint.rotation);
                 }
+                yield return new WaitForSeconds(shotFrequency);
             }
+            yield return null;
+        }
+        private void OnDisable()
+        {
+            StopCoroutine(Shooting());
         }
     }
 }

@@ -13,10 +13,9 @@ namespace Puzzle
         public void Hit(float damage)
         {
             curHealth -= damage;           
-            if (curHealth <= 0)
+            if (curHealth <= 0 && gameObject != null)
             {                                                                              
-                Destroy(gameObject);
-                curHealth = 0.1f;
+                Destroy(gameObject);                
             } 
         }
         public void Heal(float cure)
